@@ -1,0 +1,142 @@
+// colors
+$col-body: #ffeefc;
+$col-text-main: #1c1a26;
+$col-text-accent: #f9512e;
+$col-text-grey: #7f8096;
+$col-text-accent-dark: #b2341a;
+
+// widths  & heights
+$height-header-mobile: 64px;
+$width-tablet: 768px;
+$width-desktop: 1200px;
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+
+  background-color: $col-body;
+}
+
+body,
+p,
+h2,
+h3,
+h6 {
+  margin: 0;
+}
+
+body:has(.menu-toggle:checked) {
+  /* Щоб контент не стрибав, ми резервуємо місце під скролбара заздалегідь */
+  scrollbar-gutter: stable;
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  cursor: pointer;
+
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding-block: 4px;
+
+  font-weight: 500;
+  line-height: 100%;
+  color: $col-text-accent;
+  letter-spacing: 0.02em;
+
+  transition: all 0.3s ease;
+}
+
+.--uppercase {
+  text-transform: uppercase;
+}
+
+.container {
+  padding-inline: 16px;
+}
+
+@mixin on-tablet {
+  @media (min-width: $width-tablet) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: $width-desktop) {
+    @content;
+  }
+}
+
+@mixin page-grid {
+  --colums: 2;
+
+  display: grid;
+  grid-template-columns: repeat(var(--colums), 1fr);
+  column-gap: 16px;
+
+  @include on-tablet {
+    --colums: 8;
+
+    column-gap: 24px;
+  }
+}
+
+@mixin btn-hov-line {
+  position: relative;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: transparent;
+
+    transition: background-color 0.3s ease;
+  }
+
+  &:hover {
+    color: $col-text-accent;
+
+    &::after {
+      background-color: $col-text-accent;
+    }
+  }
+
+  &:focus,
+  &:active {
+    color: $col-text-accent-dark;
+
+    &::after {
+      background-color: $col-text-accent-dark;
+    }
+  }
+}
+
+.--grid-right {
+  grid-column: 6 / span 3; // Явно кажемо почати з 6-ї
+}
