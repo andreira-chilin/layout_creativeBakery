@@ -114,6 +114,20 @@ a {
   text-decoration: none;
 }
 
+// Застосовуємо до всіх картинок на сторінці
+img {
+  // Плавність переходу (тривалість 0.3 секунди)
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    filter: brightness(1.02);
+  }
+}
+
 .button {
   cursor: pointer;
 
