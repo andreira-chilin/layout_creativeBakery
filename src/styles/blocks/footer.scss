@@ -39,6 +39,8 @@
   &__link {
     color: white;
     letter-spacing: -0.01em;
+
+    @include btn-hov-line(white);
   }
 
   &__contact-us {

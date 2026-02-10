@@ -10,6 +10,71 @@ $height-header-mobile: 64px;
 $width-tablet: 768px;
 $width-desktop: 1200px;
 
+@mixin on-tablet {
+  @media (min-width: $width-tablet) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: $width-desktop) {
+    @content;
+  }
+}
+
+@mixin page-grid {
+  --colums: 2;
+
+  display: grid;
+  grid-template-columns: repeat(var(--colums), 1fr);
+  column-gap: 16px;
+
+  @include on-tablet {
+    --colums: 8;
+
+    column-gap: 24px;
+  }
+}
+
+@mixin btn-hov-line(
+  $color: $col-text-accent,
+  $color-active: $col-text-accent-dark
+) {
+  position: relative;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: transparent;
+
+    transition: background-color 0.3s ease;
+  }
+
+  &:hover {
+    color: $color;
+
+    &::after {
+      background-color: $color; // Лінія тепер завжди кольору тексту
+    }
+  }
+
+  &:focus,
+  &:active {
+    color: $color-active;
+
+    &::after {
+      background-color: $color-active;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -72,69 +137,9 @@ a {
 }
 
 .container {
+  max-width: 1200px;
+  margin-inline: auto;
   padding-inline: 16px;
-}
-
-@mixin on-tablet {
-  @media (min-width: $width-tablet) {
-    @content;
-  }
-}
-
-@mixin on-desktop {
-  @media (min-width: $width-desktop) {
-    @content;
-  }
-}
-
-@mixin page-grid {
-  --colums: 2;
-
-  display: grid;
-  grid-template-columns: repeat(var(--colums), 1fr);
-  column-gap: 16px;
-
-  @include on-tablet {
-    --colums: 8;
-
-    column-gap: 24px;
-  }
-}
-
-@mixin btn-hov-line {
-  position: relative;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-
-    width: 100%;
-    height: 1px;
-
-    background-color: transparent;
-
-    transition: background-color 0.3s ease;
-  }
-
-  &:hover {
-    color: $col-text-accent;
-
-    &::after {
-      background-color: $col-text-accent;
-    }
-  }
-
-  &:focus,
-  &:active {
-    color: $col-text-accent-dark;
-
-    &::after {
-      background-color: $col-text-accent-dark;
-    }
-  }
 }
 
 .--grid-right {

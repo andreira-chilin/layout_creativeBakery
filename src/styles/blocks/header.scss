@@ -11,12 +11,14 @@
 
   background-color: $col-body;
 
-  // background-color: honeydew !important;
-
   @include on-desktop {
     position: unset;
+
     flex-direction: row;
+
+    max-width: 1440px;
     height: 88px;
+    margin-inline: auto;
     padding-inline: 32px;
   }
 }
@@ -94,6 +96,8 @@
 
   &__link {
     color: $col-text-main;
+
+    @include btn-hov-line($col-text-main, $col-text-main);
   }
   &__button {
     @include btn-hov-line;
